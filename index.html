@@ -347,7 +347,7 @@
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 260px 260px;
+    grid-template-rows: 280px 220px;
     gap: 6px;
     margin-top: 2rem;
   }
@@ -750,7 +750,7 @@
 <section class="hero">
   <img
     class="hero-img"
-    src="photos/IMG_668.JPG"
+    src="photos/IMG_0668.JPG"
     alt="Piper J3C-65 HB-OCI en vol"
     onerror="this.style.background='linear-gradient(160deg,#3D3422,#1A1610)';this.style.display='block';"
   >
@@ -876,32 +876,37 @@
   </div>
   <div class="container" style="max-width:100%;padding:0 1.5rem;">
     <div class="gallery-grid">
-      <!-- Main cover image -->
-      <div class="gallery-item" onclick="openLightbox('photos/Photo1.JPG')">
-        <img src="photos/IMG_668.JPG" alt="HB-OCI vue principale"
-          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_668.JPG')">
+      <!-- Main cover image (same as hero) -->
+      <div class="gallery-item" onclick="openLightbox('photos/IMG_0668.JPG')">
+        <img src="photos/IMG_0668.JPG" alt="HB-OCI vue principale"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_0668.JPG')">
         <div class="overlay"><span class="img-label">Vue principale</span></div>
       </div>
-      <!-- Additional photos -->
+      <!-- 5 gallery photos -->
+      <div class="gallery-item" onclick="openLightbox('photos/Photo1.jpg')">
+        <img src="photos/Photo1.jpg" alt="HB-OCI"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('Photo1.jpg')">
+        <div class="overlay"><span class="img-label">Détail</span></div>
+      </div>
       <div class="gallery-item" onclick="openLightbox('photos/Photo2.JPG')">
-        <img src="photos/IMG_669.JPG" alt="HB-OCI"
-          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_669.JPG')">
+        <img src="photos/Photo2.JPG" alt="HB-OCI"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('Photo2.JPG')">
         <div class="overlay"><span class="img-label">Détail</span></div>
       </div>
       <div class="gallery-item" onclick="openLightbox('photos/Photo3.JPG')">
-        <img src="photos/IMG_670.JPG" alt="HB-OCI"
-          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_670.JPG')">
-        <div class="overlay"><span class="img-label">Détail</span></div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('photos/Photo4.JPG')">
-        <img src="photos/IMG_671.JPG" alt="HB-OCI"
-          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_671.JPG')">
+        <img src="photos/Photo3.JPG" alt="HB-OCI"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('Photo3.JPG')">
         <div class="overlay"><span class="img-label">Cockpit</span></div>
       </div>
-      <div class="gallery-item" onclick="openLightbox('photos/Photo5.JPG')">
-        <img src="photos/IMG_672.JPG" alt="HB-OCI"
-          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('IMG_672.JPG')">
+      <div class="gallery-item" onclick="openLightbox('photos/Photo4.JPG')">
+        <img src="photos/Photo4.JPG" alt="HB-OCI"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('Photo4.JPG')">
         <div class="overlay"><span class="img-label">Moteur</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('photos/Photo5.jpeg')">
+        <img src="photos/Photo5.jpeg" alt="HB-OCI"
+          onerror="this.parentNode.innerHTML=makePhotoPlaceholder('Photo5.jpeg')">
+        <div class="overlay"><span class="img-label">Avionique</span></div>
       </div>
     </div>
     <p style="text-align:center;margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:rgba(255,255,255,0.3);">CLIQUEZ SUR UNE PHOTO POUR AGRANDIR</p>
@@ -1123,7 +1128,7 @@
           <div class="contact-icon">✉️</div>
           <div>
             <div class="contact-label">Email</div>
-            <div class="contact-value"><a href="mailto:info@albatros.li">info@albatros.li</a></div>
+            <div class="contact-value"><a href="/cdn-cgi/l/email-protection#325b5c545d72535e505346405d411c5e5b"><span class="__cf_email__" data-cfemail="30595e565f70515c525144425f431e5c59">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="contact-item">
@@ -1158,7 +1163,7 @@
 <footer>
   <div class="footer-left">
     Fluggruppe Albatros · Birrfeld LSZF · Switzerland<br>
-    info@albatros.li · +41 79 615 70 20
+    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b644548464550564b570a484d">[email&#160;protected]</a> · +41 79 615 70 20
   </div>
   <div class="footer-reg">HB-OCI</div>
   <div class="footer-left" style="text-align:right;">
@@ -1175,7 +1180,21 @@
   <img id="lightbox-img" src="" alt="">
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Auto-fix image extensions: try .jpg if .JPG fails (GitHub/Linux is case-sensitive)
+  document.querySelectorAll('img[src^="photos/"]').forEach(img => {
+    img.addEventListener('error', function() {
+      const src = this.src;
+      if (src.endsWith('.JPG')) {
+        this.src = src.replace('.JPG', '.jpg');
+      } else if (src.endsWith('.jpg')) {
+        this.src = src.replace('.jpg', '.JPG');
+      } else if (src.endsWith('.JPEG')) {
+        this.src = src.replace('.JPEG', '.jpeg');
+      }
+    }, { once: true });
+  });
+
   // Lightbox
   function openLightbox(src) {
     document.getElementById('lightbox-img').src = src;
@@ -1210,19 +1229,4 @@
       if (e.isIntersecting) {
         setTimeout(() => {
           e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }, i * 80);
-      }
-    });
-  }, { threshold: 0.05 });
-
-  document.querySelectorAll('.gallery-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    galleryObs.observe(el);
-  });
-</script>
-
-</body>
-</html>
+          e.target.style.
