@@ -1229,4 +1229,20 @@
       if (e.isIntersecting) {
         setTimeout(() => {
           e.target.style.opacity = '1';
-          e.target.style.
+          e.target.style.transform = 'translateY(0)';
+        }, i * 80);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    galleryObs.observe(el);
+  });
+
+</script>
+
+</body>
+</html>
